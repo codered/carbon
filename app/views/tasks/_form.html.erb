@@ -1,0 +1,111 @@
+<div class="container">
+  <div class="panel panel-default">
+    <!-- Default panel contents -->
+    <div class="panel-heading">Update Task</div>
+    <div class="panel-body">
+        <%= form_for(@task) do |f| %>
+          <% if @task.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(@task.errors.count, "error") %> prohibited this task from being saved:</h2>
+
+              <ul>
+              <% @task.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+              <% end %>
+              </ul>
+            </div>
+          <% end %>
+          <div class="row">
+          <form class="form-horizontal" role="form">
+              <div class="col-md-10">
+                <div class="form-group">
+                  <%= f.label :name, class: "col-sm-2 control-label"  %>
+                  <div class="col-sm-10">   
+                    <%= f.text_field :name, class: "form-control", :required => true   %>
+                    <span class="help-block">Enter task name.</span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <%= f.label :description, class: "col-sm-2 control-label" %>
+                  <div class="col-sm-10">   
+                    <%= f.text_area :description, class: "form-control", :required => true  %>
+                    <span class="help-block">Description of task.</span>
+                  </div>
+                </div>                
+                <div class="form-group">
+                  <%= f.label :project, class: "col-sm-2 control-label" %>
+                  <div class="col-sm-10">   
+                    <select id="allprojecttypes" name="task[project_id]" class="chosen-select" style="width:100%;">    
+                    <% @projects.each do |project| %>                            
+                      <% if @curr_project_id != nil &&  @curr_project_id == project.id %>                  
+                        <option selected="selected" value="<%= project.id %>"><%= project.name %></option>                                  
+                      <% else %>
+                        <option value="<%= project.id %>"><%= project.name %></option>                                  
+                      <% end %>
+                    <% end %>       
+                    </select>
+                    <span class="help-block">Select which project this tasks belongs to.</span>                    
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <%= f.label :start_date, class: "col-sm-2 control-label" %>
+                  <div class="col-sm-10">   
+                    <%= f.date_select :start_date, class: "form-control", :required => true %>
+                    <span class="help-block">Select start date of task.</span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <%= f.label :duration, class: "col-sm-2 control-label" %>
+                  <div class="col-sm-10">   
+                    <%= f.number_field :duration, class: "form-control", :required => true  %>
+                    <span class="help-block">Choose duration of task.</span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <%= f.label :order, class: "col-sm-2 control-label", :required => true  %>
+                  <div class="col-sm-10">   
+                    <%= f.number_field :order, class: "form-control" %>
+                    <span class="help-block">Choose order of task. This is used to display projects in a specific order on the index page. (this feature is not implemented yet)</span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <%= f.label :progress, class: "col-sm-2 control-label", :required => true  %>
+                  <div class="col-sm-10">   
+                    <%= f.text_field :progress, class: "form-control" %>
+                    <span class="help-block">Progress of the task. (Project status is calculated via this value.)</span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <%= f.label :status, class: "col-sm-2 control-label", :required => true  %>
+                  <div class="col-sm-10">   
+                    <%= f.text_field :status, class: "form-control" %>
+                    <span class="help-block">Is the task active, closed, open, etc.</span>
+                  </div>
+                </div>
+                <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                <%= link_to 'Back', tasks_path, class: "btn btn-info" %> 
+                  <%= f.submit class: "btn btn-primary" %> 
+                </div>
+              </div>                  
+            </div>
+            </form>
+          </div>
+        <% end %>
+  </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+    var config = {
+      '.chosen-select'           : {},
+      '.chosen-select-deselect'  : {allow_single_deselect:true},
+      '.chosen-select-no-single' : {disable_search_threshold:10},
+      '.chosen-select-no-results': {no_results_text:'Oops, nothing found!'},
+      '.chosen-select-width'     : {width:"95%"}
+    }
+    for (var selector in config) {
+      $(selector).chosen(config[selector]);
+    }    
+  </script>

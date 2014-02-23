@@ -1,0 +1,82 @@
+<div class="container">
+  <div class="panel panel-default">
+    <!-- Default panel contents -->
+    <div class="panel-heading">Update Project</div>
+    <div class="panel-body">
+        <%= form_for(@project) do |f| %>
+          <% if @project.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(@project.errors.count, "error") %> prohibited this project from being saved:</h2>
+
+              <ul>
+              <% @project.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+              <% end %>
+              </ul>
+            </div>
+          <% end %>
+          <div class="row">
+          <form class="form-horizontal" role="form">
+              <div class="col-md-10">
+                <div class="form-group">
+                  <%= f.label :name, class: "col-sm-2 control-label"  %>
+                  <div class="col-sm-10">   
+                    <%= f.text_field :name, class: "form-control", :required => true %>
+                    <span class="help-block">Enter project name.</span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <%= f.label :description, class: "col-sm-2 control-label" %>
+                  <div class="col-sm-10">   
+                    <%= f.text_area :description, class: "form-control", :required => true  %>
+                    <span class="help-block">Description of project.</span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <%= f.label :start_date, class: "col-sm-2 control-label" %>
+                  <div class="col-sm-10">   
+                    <%= f.date_select :start_date, class: "form-control", :required => true  %>
+                    <span class="help-block">Select start date of project.</span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <%= f.label :duration, class: "col-sm-2 control-label" %>
+                  <div class="col-sm-10">   
+                    <%= f.number_field :duration, class: "form-control", :required => true %>
+                    <span class="help-block">Choose duration of project.</span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <%= f.label :order, class: "col-sm-2 control-label" %>
+                  <div class="col-sm-10">   
+                    <%= f.number_field :order, class: "form-control", :required => true %>
+                    <span class="help-block">Choose order of project. This is used to display projects in a specific order on the index page. (this feature is not implemented yet)</span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <%= f.label :progress, class: "col-sm-2 control-label" %>
+                  <div class="col-sm-10">   
+                    <%= f.text_field :progress, class: "form-control" %>
+                    <span class="help-block">Progress of the project. (This field is editable but not recommended. Project status is calculated via allocated tasks and completion status)</span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <%= f.label :status, class: "col-sm-2 control-label" %>
+                  <div class="col-sm-10">   
+                    <%= f.text_field :status, class: "form-control", :required => true %>
+                    <span class="help-block">Is the project active, closed, open, etc.</span>
+                  </div>
+                </div>
+                <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                <%= link_to 'Back', projects_path, class: "btn btn-info" %> 
+                  <%= f.submit class: "btn btn-primary" %> 
+                </div>
+              </div>                  
+            </div>
+            </form>
+          </div>
+        <% end %>
+  </div>
+  </div>
+</div>

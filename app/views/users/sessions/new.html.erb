@@ -1,0 +1,29 @@
+
+  <div class="row"> 
+    <div class="col-xs-6 col-md-4"></div>    
+    <div class="col-xs-6 col-md-3">  
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Sign In</h3>
+        </div>
+        <div class="panel-body">
+            <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :class=>"form-signin-heading", :role=>"form") do |f| %>
+              <div class="form-group">
+                <label >Email address</label>
+                <div><%= f.email_field :email, :autofocus => true, :required => true, :class => "form-control", :placeholder=>"Enter Email Address" %></div>
+              </div>
+              <div class="form-group">
+                 <label>Password</label>
+                <div><%= f.password_field :password, :required => true, :class => "form-control", :placeholder=>"Enter Password"  %></div>
+                <% if devise_mapping.rememberable? -%>
+                  <div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
+                <% end -%>            
+                <div><%= f.submit "Sign in", :class => "btn btn-lg btn-primary btn-block" %></div>
+                <%= render "users/shared/links" %>
+                </div>
+            <% end %>            
+        </div>
+      </div>                 
+    </div>  
+    <div class="col-xs-6 col-md-5"></div>
+  </div>

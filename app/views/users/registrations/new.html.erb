@@ -1,0 +1,32 @@
+  <div class="row"> 
+    <div class="col-xs-6 col-md-4"></div>    
+    <div class="col-xs-6 col-md-3">  
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Sign Up</h3>
+        </div>
+        <div class="panel-body">
+
+			<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :class=>"form-signin-heading", :role=>"form") do |f| %>
+			  <%= devise_error_messages! %>
+			    <div class="form-group">
+				  <div><%= f.label :email %></div>
+				  <div><%= f.email_field :email, :autofocus => true, :class => "form-control", :placeholder=>"Enter Email Address" %></div>
+				</div>			  
+			    <div class="form-group">
+				  <div><%= f.label :password %></div>
+				  <div><%= f.password_field :password, :class => "form-control", :placeholder=>"Enter Password" %></div>
+				</div>			  
+			    <div class="form-group">
+				  <div><%= f.label :password_confirmation %></div>
+				  <div><%= f.password_field :password_confirmation, :class => "form-control", :placeholder=>"Enter Password" %></div>
+				</div>			  
+			    <div class="form-group">
+			  		<div><%= f.submit "Sign up", :class => "btn btn-lg btn-primary btn-block"%></div>
+			  	</div>
+			<% end %>
+		</div>
+      </div>                 
+    </div>  
+    <div class="col-xs-6 col-md-5"></div>
+  </div>

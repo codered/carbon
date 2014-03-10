@@ -8,12 +8,10 @@
   <meta name="author" content="">    
   
   <title>Carbon - Project Management</title>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
 
-  <!-- Optional theme -->
-  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap-theme.min.css">
   <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
@@ -23,43 +21,7 @@
 </head>
 <body>
 
- <!-- Fixed navbar -->
-    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="/">Carbon</a>
-        </div>
-        <div class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="/">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
-            <% if user_signed_in? %>
-              <li><%= link_to "Projects", projects_path %></li>                 
-              <li><%= link_to "Tasks", tasks_path %></li>
-           <% end %>
-            <li>
-            <form class="navbar-form navbar-right" role="form">	            
-	            <% if user_signed_in? %>	            	
-	            	<a id="user_logout" class="btn btn-warning" href="/users/sign_out" rel="nofollow" data-method="delete">
-                    <span class="glyphicon glyphicon glyphicon-user"></span> Logout </a>                
-	            <% else %>
-	            	<!--<%= link_to "Login", new_user_session_path, :class => "btn btn-success" %>--> 
-	            	<a id="user_logout" class="btn btn-success" href="<%= new_user_session_path %>" rel="nofollow">
-                    <span class="glyphicon glyphicon glyphicon-user"></span> Login </a>
-	            <% end %>  
-	         </form>           
-            </li>           
-          </ul>
-        </div><!--/.nav-collapse -->
-      </div>
-    </div> <!-- end of navbar -->
+<%= render "navbar" %>
     <!--<div class="container">
     	<div class="alert alert-success"><%= notice %></div>		
 		<div class="alert alert-danger"><%= alert %></div>
